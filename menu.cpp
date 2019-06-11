@@ -61,8 +61,8 @@ class menu
 void menu::add(string s, int r = 0, string d = " ")
 {
     num++;
-    if(r==0)
-        r = num;
+	if(r == 0)
+		r = num;
     entries.push_back(item(s, r, d));
 }
 
@@ -72,6 +72,7 @@ int menu::display()
     while(true)
     {
         int max_y = getmax_y(), i;
+		head.y = (max_y - head.name.size())/2;
         for(item &a : entries)
         {
             a.y = (max_y - a.name.size())/2;
@@ -79,9 +80,10 @@ int menu::display()
         int max_x = getmax_x();
         int x = (max_x - num)/2 - 2;
         system("clear");
-        for(i =0; i<x; i++)
+        for(i =2; i<x; i++)
             cout<<endl;
         head.display();
+		cout<<endl<<endl<<endl;
         for(i=0;i<(int)entries.size();i++)
         {
             if ( i == selected)
@@ -89,8 +91,11 @@ int menu::display()
             else
                 entries[i].display();
         }
-        cout << "\n\n\n\n";
-        cout << entries[selected].desc;
+        cout << "\n\n";
+		cout<<"\n\n\n";
+
+        cout << "\n\n";
+		cout << "Desription: " << entries[selected].desc;
         cout<<'\n';
         int opt;
         opt = getch();
@@ -122,6 +127,9 @@ void menumaker()
     int num=0;
     ofstream fentry;
     fentry.open(objn);
+	cout << "Enter menu heading: ";
+	cin>>a.name;
+	fentry<<a.name<<endl;
     while(true)
     {
         cout<<"Enter menu entry name(NIL for exiting): ";
@@ -132,8 +140,6 @@ void menumaker()
         num++;
         cout<<"Enter description(NIL to skip): ";
         cin>>a.desc;
-        if(a.desc == "NIL")
-            a.desc = " ";
         fentry<<a.desc<<' ';
         cout<<"Enter return value(0 for default): ";
         cin>>a.ret;
@@ -174,11 +180,14 @@ void menu::readfromfile(string s)
     item temp;
     ifstream file;
     file.open(s);
+	file>>temp.name;
+	head.name = temp.name;
     while(file.good())
     {
         file>>temp.name;
         file>>temp.desc;
         file>>temp.ret;
+		num++;
         entries.push_back(temp);
     }
     file.close();
