@@ -22,9 +22,9 @@ Menumaker is a library that can be used to create menus for programs. It has an 
         ```#include "mmaker.h"```  
 - Make an object of class menu where the menu has to be created.   
         Example: ```menu obj;```  
-- The name of the menu can be added by the `menu_head(string)` method.  
+- The name of the menu can be added by the ```menu_head(string)``` method.  
         Example: ```obj.menu_head("Menu Name");```  
-- Add entries to the menu class using the function `add(string, int, string)`. The default values for return value is assigned serial wise and the default description is NULL.  
+- Add entries to the menu class using the function ```add(string, int, string)```. The default values for return value is assigned serial wise and the default description is NULL.  
         Example: ```obj.add("Entry Name", return_value, "Description");```  
 - The return value and description are optional. Entries can also be added as:   
         ```obj.add("Entry Name", return_value);``` or ```obj.add("Entry Name");```  
