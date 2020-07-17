@@ -31,14 +31,15 @@ class item
 void item::display()
 {
    cout.width(y + (name.size()));
-   cout<<name<<endl;
+   cout<<name<<"  \n";
 }
 
 void item::disp_selected()
 {
-    for(int i=1;i<y;i++)
-        cout<<' ';
-    cout<<"-)" << name <<endl;
+    // for(int i=3;i<y;i++)
+    //     cout<<' ';
+    cout.width(y);
+    cout<<"--> " << name <<"  \n";
 
 }
 
@@ -68,7 +69,9 @@ void menu::add(string s, int r = 0, string d = " ")
 
 int menu::display()
 {
-    int selected = 0;
+    // cout.rdbuf()->pubsetbuf(0, 0);
+    system("clear");
+    int selected = 0, opt=66;
     while(true)
     {
         int max_y = getmax_y(), i;
@@ -79,7 +82,8 @@ int menu::display()
         }
         int max_x = getmax_x();
         int x = (max_x - num)/2 - 2;
-        system("clear");
+        // system("clear");
+        printf("\033[%d;%dH", 0, 0);
         for(i =2; i<x; i++)
             cout<<endl;
         head.display();
@@ -91,13 +95,17 @@ int menu::display()
             else
                 entries[i].display();
         }
-        cout << "\n\n";
-		cout<<"\n\n\n";
-
-        cout << "\n\n";
-		cout << "Desription: " << entries[selected].desc;
+        cout << "\n\n\n\n\n\n\n";
+        cout << "Desription: " << entries[selected].desc;
+        int previous = (opt==66)?(selected-1):(selected+1);
+        if (previous < 0)
+            previous = num-1;
+        if(previous == num)
+            previous = 0;
+        int temp = (entries[previous].desc.length() - entries[selected].desc.length());
+        for(int i=0;i<temp;i++)
+            cout << " ";
         cout<<'\n';
-        int opt;
         opt = getch();
         if (opt == 10)
             return entries[selected].ret;
