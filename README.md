@@ -13,7 +13,7 @@ Menumaker is a library that can be used to create menus for programs. It has an 
 - Optional return value or default values assignment.
 
 ## Method
-- Place the files `mmaker.h` and `func.h` from the src directory into your working directory.  
+- Place the files `mmaker.h` and `func.h` from the `src` directory into your working directory.  
 - Include the header file "mmaker.h"  
         `#include "mmaker.h"`  
 - Make an object of class menu where the menu has to be created.   
