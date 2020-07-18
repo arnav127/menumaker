@@ -9,6 +9,7 @@ int main()
 {
     menu obj;
     int x;
+    obj.menu_head("Calculator");
     obj.add("Addition", 1, "Add two numbers");
     obj.add("Subtraction", 2, "Subtract two numbers");
     obj.add("Multiplication", 3);
