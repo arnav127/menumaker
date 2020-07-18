@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdio>
 #include "func.h"
+
 using namespace std;
 
 class item
@@ -36,8 +37,6 @@ void item::display()
 
 void item::disp_selected()
 {
-    // for(int i=3;i<y;i++)
-    //     cout<<' ';
     cout.width(y);
     cout<<"--> " << name <<"  \n";
 
@@ -54,6 +53,7 @@ class menu
         num=0;
     };
     void add(string,int,string);
+    void menu_head(string);
     int display();
     void readfromfile(string);
 };
@@ -67,9 +67,14 @@ void menu::add(string s, int r = 0, string d = " ")
     entries.push_back(item(s, r, d));
 }
 
+void menu::menu_head(string s)
+{
+    head.name = s;
+    return;
+}
+
 int menu::display()
 {
-    // cout.rdbuf()->pubsetbuf(0, 0);
     system("clear");
     int selected = 0, opt=66;
     while(true)
@@ -82,12 +87,15 @@ int menu::display()
         }
         int max_x = getmax_x();
         int x = (max_x - num)/2 - 2;
-        // system("clear");
         printf("\033[%d;%dH", 0, 0);
         for(i =2; i<x; i++)
             cout<<endl;
+        //cout.width(head.y);
         head.display();
-		cout<<endl<<endl<<endl;
+        cout.width(head.y+2*head.name.size());
+        cout << string(3*head.name.size(), '*');
+        //cout << "**********";
+		cout<<"\n\n";
         for(i=0;i<(int)entries.size();i++)
         {
             if ( i == selected)
