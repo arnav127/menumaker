@@ -76,7 +76,7 @@ void menu::menu_head(string s)
 int menu::display()
 {
     system("clear");
-    int selected = 0, opt=66;
+    int selected = 0, opt=66, last_x = getmax_x(), last_y = getmax_y();
     while(true)
     {
         int max_y = getmax_y(), i;
@@ -86,6 +86,12 @@ int menu::display()
             a.y = (max_y - a.name.size())/2;
         }
         int max_x = getmax_x();
+        if (!(max_x == last_x && max_y == last_y))
+        {
+            system("clear");
+            last_x = max_x;
+            last_y = max_y;
+        }
         int x = (max_x - num)/2 - 2;
         printf("\033[%d;%dH", 0, 0);
         for(i =2; i<x; i++)
