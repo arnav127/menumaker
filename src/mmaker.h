@@ -93,7 +93,8 @@ int menu::display()
             last_y = max_y;
         }
         int x = (max_x - num)/2 - 2;
-        printf("\033[%d;%dH", 0, 0);
+        gotoxy(0, 0);
+        //printf("\033[%d;%dH", 0, 0);
         for(i =2; i<x; i++)
             cout<<endl;
         //cout.width(head.y);
