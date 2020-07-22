@@ -5,6 +5,11 @@
 
 static struct termios old, newa;
 
+void gotoxy(int x, int y)
+{
+    printf("\033[%d;%dH", x, y);
+}
+
 void initTermios(int echo)
 {
     tcgetattr(0, &old);
