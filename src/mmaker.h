@@ -37,8 +37,8 @@ void item::display()
 
 void item::disp_selected()
 {
-    cout.width(y);
-    cout<<"--> " << name <<"  \n";
+    cout.width(y+10);
+    cout<<"\033[31;1;4m--> " << name <<"\033[0m     \n";
 
 }
 
