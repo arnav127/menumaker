@@ -158,7 +158,6 @@ void menumaker()
         cout<<"Enter menu entry name(NIL for exiting): ";
         cin.ignore();
         getline(cin, a.name);
-        // cin>> a.name;
         if(a.name=="NIL")
             break;
         fentry<<a.name<<';';
@@ -211,16 +210,10 @@ void menu::readfromfile(string s)
     while(file.good())
     {
         string st;
-        // cin.ignore();
         getline(file, st);
         getline(file, temp.name, ';');
         cerr << "Inp: " << temp.name << '\n';
-        // cin.ignore();
         getline(file, temp.desc, ';');
-        cerr << "Desc: " << temp.desc << '\n';
-        // getline(file, temp.ret, ';');
-        // file>>temp.name;
-        // file>>temp.desc;
         file>>temp.ret;
 		num++;
         entries.push_back(temp);
